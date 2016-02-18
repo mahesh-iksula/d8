@@ -724,3 +724,7 @@ $databases['default']['default'] = array (
 );
 $settings['install_profile'] = 'standard';
 $config_directories['sync'] = 'sites/default/files/config_FgIf79L2_Eut8K3LAjANpycLR0H9yg7-gzrYm8fetXVAOnR2OUdrs2OyG43V92X1lm-jfB89DQ/sync';
+### SHow error log ####
+error_reporting(E_ALL);
+ini_set('display_errors', TRUE);
+ini_set('display_startup_errors', TRUE);
