@@ -24,9 +24,11 @@ class HelloForm extends FormBase {
    * {@inheritdoc}
    */
   public function buildForm(array $form, FormStateInterface $form_state) {
-    $form['phone_number'] = array(
+    $form['mobile_number'] = array(
       '#type' => 'tel',
-      '#title' => $this->t('Your phone number'),
+      '#title' => $this->t('Your Mobile number'),
+      '#maxlength' => 10,
+      '#size' => 15,
     );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
@@ -41,8 +43,10 @@ class HelloForm extends FormBase {
    * {@inheritdoc}
    */
   public function validateForm(array &$form, FormStateInterface $form_state) {
-    if (strlen($form_state->getValue('phone_number')) < 3) {
-      $form_state->setErrorByName('phone_number', $this->t('The phone number is too short. Please enter a full phone number.'));
+//    dpm($form, "validateForm");
+    dpm($form_state, "validateFormState");
+    if (strlen($form_state->getValue('mobile_number')) !== 10) {
+      $form_state->setErrorByName('mobile_number', $this->t('Please Enter Valid Mobile number'));
     }
   }
 
@@ -50,7 +54,9 @@ class HelloForm extends FormBase {
    * {@inheritdoc}
    */
   public function submitForm(array &$form, FormStateInterface $form_state) {
-    drupal_set_message($this->t('Your phone number is @number', array('@number' => $form_state->getValue('phone_number'))));
+    dpm($form, "submitForm");
+    dpm($form_state, "submitFormState");
+    drupal_set_message($this->t('Your Mobile number is @number', array('@number' => $form_state->getValue('mobile_number'))));
   }
 
 }
