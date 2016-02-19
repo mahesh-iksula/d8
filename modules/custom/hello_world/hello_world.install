@@ -1,0 +1,42 @@
+<?php
+/**
+ * @file 
+ * install file of hello_world module
+ */
+
+/**
+ * Implements hook_schema
+ * 
+ */
+function hello_world_schema() {
+  $schema['person_details'] = array(
+    'fields' => array(
+      'id' => array(
+        'type' => 'serial',
+        'not null' => TRUE,
+      ),
+      'full_name' => array(
+        'type' => 'varchar',
+        'length' => 40,
+        'not null' => TRUE,
+      ),
+      'age' => array(
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+      ),
+      'mobile_number' => array(
+        'type' => 'int',
+        'size' => 'big',
+        'not null' => TRUE,
+      ),
+      'email_id' => array(
+        'type' => 'varchar',
+        'length' => 40,
+        'not null' => TRUE,
+      ),
+    ),
+    'primary key' => array('id'),
+  );
+  return $schema;
+}
