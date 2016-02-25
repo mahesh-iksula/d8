@@ -61,6 +61,34 @@ class HelloForm extends FormBase {
       ],
       '#suffix' => '<span class="email-valid-message"></span>'
     );
+//    $city_options = array(0 => 'Select', 1 => 'Mumbai', 2 => 'Delhi');
+//    $selected = ($form_state->getValue('selected_city') !== null) ?: key($city_options);
+//
+//    if (empty($selected))
+//      $has_dis = TRUE;
+//    else
+//      $has_dis = FALSE;
+//    
+//    $form['selected_city'] = array(
+//      '#type' => 'select',
+//      '#title' => $this->t('City'),
+//      '#options' => $city_options,
+//      '#required' => FALSE,
+//      '#ajax' => array(
+//        'event' => 'change',
+//        'callback' => array($this, 'area_list_dropdown_callback'),
+//        'wrapper' => 'dropdown-second-replace',
+//      ),
+//    );
+//    $form['dropdown_second'] = array(
+//      '#type' => 'select',
+//      '#title' => $city_options[$selected] . ' ' . $this->t('Area List'),
+//      '#prefix' => '<div id="dropdown-second-replace">',
+//      '#suffix' => '</div>',
+//      '#disabled' => $has_dis,
+//      '#options' => $this->get_area_dropdown_options($selected),
+//      //'#default_value' => isset($form_state['values']['dropdown_second']) ? $form_state['values']['dropdown_second'] : '',
+//    );
     $form['actions']['#type'] = 'actions';
     $form['actions']['submit'] = array(
       '#type' => 'submit',
@@ -115,6 +143,15 @@ class HelloForm extends FormBase {
     return TRUE;
   }
   
+  protected function area_list_dropdown_callback(array &$form, FormStateInterface $form_state) {
+    dpm("inside area_list_dropdown_callback");
+    return $form['dropdown_second'];
+  }
+  
+  protected function get_area_dropdown_options($key = '') {
+    dpm($key, "get_area_dropdown_options");
+  }
+
   /**
    * Ajax callback to validate the email field.
    */

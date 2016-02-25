@@ -6,6 +6,14 @@ hello_world.content:
   requirements:
     _permission: 'access content'
     
+hello_world.display_person_contents:
+  path: '/hello/persona'
+  defaults:
+    _controller: '\Drupal\hello_world\Controller\HelloController::display_person_contents'
+    _title: 'My Persona'
+  requirements:
+    _permission: 'access content'
+    
 hello_world.form:
   path: '/hello-form'
   defaults:
