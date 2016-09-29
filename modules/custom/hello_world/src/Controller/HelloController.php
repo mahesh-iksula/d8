@@ -17,8 +17,16 @@ class HelloController extends ControllerBase {
       '#markup' => $this->t('Hello, World!'),
     );
   }
+  
+  public function get_person_contents() {
+    
+    dpm("enter in auto");
+    return;
+  }
 
   public function display_person_contents() {
+    
+    $output[] = $form = \Drupal::formBuilder()->getForm('\Drupal\hello_world\Form\viewHelloForm');
     $header = array(
       // The header gives the table the information it needs in order to make
       // the query calls for ordering. TableSort uses the field information
@@ -46,7 +54,7 @@ class HelloController extends ControllerBase {
     );
     $db = \Drupal::database();
     $result = $db->select('person_details','a')->fields('a')->execute();
-    dpm($result);
+    
 //    $query = db_select('person_details', 't');
 //        //->extend('TableSort'); // Using the TableSort Extender is what tells the
 //    // the query object that we are sorting.
@@ -64,15 +72,16 @@ class HelloController extends ControllerBase {
       // to the array.
       $rows[] = array('data' => (array) $row);
     }
-
+    //dpm($result, "result");
+    //dpm($rows, "rows");
     // build the table for the nice output.
-    $build['tablesort_table'] = array(
+    $output[] = $build['tablesort_table'] = array(
       '#theme' => 'table',
       '#header' => $header,
       '#rows' => $rows,
     );
 
-    return $build;
+    return $output;
   }
 
 }

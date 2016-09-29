@@ -15,9 +15,26 @@ hello_world.display_person_contents:
     _permission: 'access content'
     
 hello_world.form:
-  path: '/hello-form'
+  path: '/hello/hello-form'
   defaults:
     _title: 'Hello form'
     _form: '\Drupal\hello_world\Form\HelloForm'
   requirements:
     _permission: 'access content'
+    
+hello_world.view_form:
+  path: '/hello/view-hello-form'
+  defaults:
+    _title: 'View Hello form'
+    _form: '\Drupal\hello_world\Form\viewHelloForm'
+  requirements:
+    _permission: 'access content'
+
+hello_world.person_name_autocomplete:
+    path: '/hello/person-autocomplete'
+    defaults:
+    _controller: '\Drupal\hello_world\Controller\HelloController::get_person_contents'
+    _title: 'Get Person Details'
+    requirements:
+    _permission: 'access content'
+    
